@@ -3,7 +3,7 @@
   "provider": {
     "alibaba": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Alibaba",
+      "name": "alibaba",
       "options": {
         "baseURL": "https://ws-4yexytxtu73rz2f4.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
         "apiKey": "${DASHSCOPE_API_KEY}"
