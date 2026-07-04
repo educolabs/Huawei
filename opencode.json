@@ -4,14 +4,18 @@
   "provider": {
     "alibaba": {
       "npm": "@ai-sdk/openai-compatible",
-      "name": "Alibaba",
+      "name": "alibaba",
+      "env": [
+        "DASHSCOPE_API_KEY"
+      ],
       "options": {
-        "baseURL": "https://ws-4yexytxtu73rz2f4.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1",
-        "apiKey": "{env:DASHSCOPE_API_KEY}"
+        "apiKey": "{env:DASHSCOPE_API_KEY}",
+        "baseURL": "https://ws-4yexytxtu73rz2f4.ap-southeast-1.maas.aliyuncs.com/compatible-mode/v1"
       },
       "models": {
         "qwen3.7-plus": {
-          "name": "Qwen 3.7 Plus"
+          "name": "Qwen 3.7 Plus",
+          "tool_call": true
         }
       }
     }
