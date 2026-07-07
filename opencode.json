@@ -1,6 +1,24 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "alibaba/qwen3.7-plus",
+  "small_model": "alibaba/qwen3.7-plus",
+  "plugin": [
+    "@zenobius/opencode-background@latest",
+    "opencode-agent-skills@latest",
+    "opencode-agent-memory@latest",
+    "@spoons-and-mirrors/subtask2@latest",
+    "opentmux@latest",
+    "@tarquinen/opencode-dcp@latest",
+    "opencode-swarm-plugin@latest"
+  ],
+  "compaction": {
+      "auto": true,
+      "prune": true,
+      "reserved": 10000
+  },
+  "enabled_providers": [
+      "alibaba"
+  ],
   "provider": {
     "alibaba": {
       "npm": "@ai-sdk/openai-compatible",
@@ -15,7 +33,10 @@
       "models": {
         "qwen3.7-plus": {
           "name": "Qwen 3.7 Plus",
-          "tool_call": true
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+          "temperature": true
         }
       }
     }
