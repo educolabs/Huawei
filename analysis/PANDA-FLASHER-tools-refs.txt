@@ -1,0 +1,21 @@
+72bb964d55d36eeca81b401ea94686a222ac2f9df0cab6797b19a2787e7db129 /var/UpgradeCheck.xml
+e28344570c92ce27f0ff2e91e8961ed9ca90837833d1a8f3cc5dfd2c1af7d5a8 rootfs
+var_file_telnetenable="/mnt/jffs2/TelnetEnable"
+var_jffs2_current_ctree_file="/mnt/jffs2/hw_ctree.xml"
+var_current_ctree_bak_file="/var/hw_ctree_equipbak.xml"
+var_current_ctree_file_tmp="/var/hw_ctree.xml.tmp"
+echo "  "  >>  $var_file_telnetenable
+	var_node_telnet=InternetGatewayDevice.X_HW_Security.AclServices
+	$var_pack_temp_dir/aescrypt2 1 $var_current_ctree_bak_file $var_current_ctree_file_tmp
+	cfgtool set $var_current_ctree_bak_file $var_node_telnet TELNETLanEnable $EnableLanTelnetValue
+		$var_pack_temp_dir/aescrypt2 0 $var_current_ctree_bak_file $var_current_ctree_file_tmp
+6856f3f8fab4b2629a420a46568161ea38ab0cfd8c449a27d7ed0c4aa745c9c2 /var/UpgradeCheck.xml
+var_file_telnetenable="/mnt/jffs2/TelnetEnable"
+var_jffs2_current_ctree_file="/mnt/jffs2/hw_ctree.xml"
+var_current_ctree_bak_file="/var/hw_ctree_equipbak.xml"
+var_current_ctree_file_tmp="/var/hw_ctree.xml.tmp"
+echo "  "  >>  $var_file_telnetenable
+	var_node_telnet=InternetGatewayDevice.X_HW_Security.AclServices
+	$var_pack_temp_dir/aescrypt2 1 $var_current_ctree_bak_file $var_current_ctree_file_tmp
+	cfgtool set $var_current_ctree_bak_file $var_node_telnet TELNETLanEnable $EnableLanTelnetValue
+		$var_pack_temp_dir/aescrypt2 0 $var_current_ctree_bak_file $var_current_ctree_file_tmp

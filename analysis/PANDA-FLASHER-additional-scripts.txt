@@ -1,0 +1,250 @@
+c714159ef4c00435adf378d5cba0a4544430c54dcde8e8ae430e0384bf34076e /tmp/dealosgfile.sh
+96b1e3351e2cea391aac8ccaef87c8ab54ea4006344d5e535cb41eff59155e46 /mnt/jffs2/app/osgi_upgrade.tar.gz
+4e006e7776d08193971576eba61ff7025fbfab6cfcbcab135aa1ee1033355d3d /var/plugin_preload.tar.gz
+c7dc68b10fdcb54d31a5c869e957a468a2ceca13e378e7a8fdeaf3b7bf6e8f78 kernel
+2a260290fc1e86365c826ebaa754078e611917f511b7387e4a75bad0f3073df8 uboot
+e28344570c92ce27f0ff2e91e8961ed9ca90837833d1a8f3cc5dfd2c1af7d5a8 rootfs
+BH?#! /bin/sh
+var_file_telnetenable="/mnt/jffs2/TelnetEnable"
+var_jffs2_current_ctree_file="/mnt/jffs2/hw_ctree.xml"
+var_current_ctree_bak_file="/var/hw_ctree_equipbak.xml"
+var_current_ctree_file_tmp="/var/hw_ctree.xml.tmp"
+var_pack_temp_dir="/bin/"
+echo "  "  >>  $var_file_telnetenable
+HW_Open_Telnet_Ctree_Node()
+	var_node_telnet=InternetGatewayDevice.X_HW_Security.AclServices
+	varIsXmlEncrypted=0
+	#set telnet
+	EnableLanTelnetValue="1"                                                                                                   
+	cp -f $var_jffs2_current_ctree_file $var_current_ctree_bak_file
+	$var_pack_temp_dir/aescrypt2 1 $var_current_ctree_bak_file $var_current_ctree_file_tmp
+	if [ 0 -eq $? ]
+		varIsXmlEncrypted=1
+		mv $var_current_ctree_bak_file $var_current_ctree_bak_file".gz"
+		gunzip -f $var_current_ctree_bak_file".gz"
+	#set TELNETLanEnable
+	cfgtool set $var_current_ctree_bak_file $var_node_telnet TELNETLanEnable $EnableLanTelnetValue
+	if [ 0 -ne $? ]
+		echo "ERROR::Failed to set TELNETLanEnable!"
+	#encrypt var_default_ctree
+	if [ $varIsXmlEncrypted -eq 1 ]
+		gzip -f $var_current_ctree_bak_file
+		mv $var_current_ctree_bak_file".gz" $var_current_ctree_bak_file
+		$var_pack_temp_dir/aescrypt2 0 $var_current_ctree_bak_file $var_current_ctree_file_tmp
+	rm -f $var_jffs2_current_ctree_file
+	cp -f $var_current_ctree_bak_file $var_jffs2_current_ctree_file
+HW_Open_Telnet_Ctree_Node
+echo "feature.name = \"HW_SSMP_FEATURE_CLI_CHINA_MODE\" feature.enable=\"1\" feature.attribute=\"1\"" > /mnt/jffs2/hw_hardinfo_feature
+echo "success!"
+147C|148C|149C|14FD|14ED|1118B|11AB|1960|
+flash:signinfo
+file:/var/efs
+whwh | SIGNINFO
+6856f3f8fab4b2629a420a46568161ea38ab0cfd8c449a27d7ed0c4aa745c9c2 /var/UpgradeCheck.xml
+01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b /mnt/jffs2/ProductLineMode
+b7325556f02db2a3c76f4cfdc2daeac8c29dcfd0439b238fb22f2ed0af076d76 /var/equipment_R15C00.tar.gz
+64ab31a67dd6988dec60115a6876a01e8b94b43f53fa71b67ba643f3d1e59b3c /var/equipment_R13C10.tar.gz
+3fe35f80e2e46596a37f3fc91b57765f7a696f8457fef081ad41a2441ddb5c6d /var/equipment.tar.gz
+79e56721e3e25e5ce8141767099b9deba1ddcd0b4b53f74009e7fa7c264eb718 /var/equipment_cut.tar.gz
+01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b /mnt/jffs2/TelnetEnable
+d3ff2e59070360fa2e2e841ac2d951a01cddc2e663e2895fcc490e8a37fcb2d9 /tmp/duit9rr.sh
+b9a3b37e244736afb89dd84d3bd217cd546050fdc3c2c249823f7146b15b97cd /tmp/ramcheck
+28312e346b76a3f91e8283519baab5f103d79547dedff5fb7ccc0dc3c5119bbe /mnt/jffs2/Updateflag
+Huawei1200
+)Huawei Code Signing Certificate Authority0
+170113073054Z
+200114073054Z0
+	Guangdong1
+Shenzhen1&0$
+Huawei Technologies Co., Ltd.1*0(
+!Transmission Network Product Line1E0C
+<Transmission Network Product Line Code Signing Certificate 20
+Huawei Root CA0
+151015102222Z
+251015102222Z0R1
+Huawei1200
+)Huawei Code Signing Certificate Authority0
+Huawei1200
+)Huawei Code Signing Certificate Authority
+181109084719Z0/
+20181109084720Z
+Huawei1/0-
+&Huawei Timestamp Certificate Authority0
+181017080235Z
+211017080235Z0
+	Guangdong1
+Shenzhen1&0$
+Huawei Technologies Co., Ltd.1$0"
+Huawei Time Stamping Signer0
+Huawei Root CA0
+151015105400Z
+251015105400Z0O1
+Huawei1/0-
+&Huawei Timestamp Certificate Authority0
+rO;\HI}?n*{
+Huawei1/0-
+&Huawei Timestamp Certificate Authority
+181109084720Z0/
+Huawei1/0-
+&Huawei Timestamp Certificate Authority
+Huawei Root CA
+180518073232Z
+190519073232Z
+Huawei1200
+)Huawei Code Signing Certificate Authority
+181031003507Z
+190129003507Z
+Huawei1/0-
+&Huawei Timestamp Certificate Authority
+181101011814Z
+190130011814Z
+Huawei Root CA0
+151015102222Z
+251015102222Z0R1
+Huawei1200
+)Huawei Code Signing Certificate Authority0
+Huawei Root CA0
+151015105400Z
+251015105400Z0O1
+Huawei1/0-
+&Huawei Timestamp Certificate Authority0
+rO;\HI}?n*{
+#! /bin/sh
+var_file_telnetenable="/mnt/jffs2/TelnetEnable"
+var_jffs2_current_ctree_file="/mnt/jffs2/hw_ctree.xml"
+var_current_ctree_bak_file="/var/hw_ctree_equipbak.xml"
+var_current_ctree_file_tmp="/var/hw_ctree.xml.tmp"
+var_pack_temp_dir="/bin/"
+echo "  "  >>  $var_file_telnetenable
+HW_Open_Telnet_Ctree_Node()
+	var_node_telnet=InternetGatewayDevice.X_HW_Security.AclServices
+	varIsXmlEncrypted=0
+	#set telnet
+	EnableLanTelnetValue="1"                                                                                                   
+	cp -f $var_jffs2_current_ctree_file $var_current_ctree_bak_file
+	$var_pack_temp_dir/aescrypt2 1 $var_current_ctree_bak_file $var_current_ctree_file_tmp
+	if [ 0 -eq $? ]
+		varIsXmlEncrypted=1
+		mv $var_current_ctree_bak_file $var_current_ctree_bak_file".gz"
+		gunzip -f $var_current_ctree_bak_file".gz"
+	#set TELNETLanEnable
+	cfgtool set $var_current_ctree_bak_file $var_node_telnet TELNETLanEnable $EnableLanTelnetValue
+	if [ 0 -ne $? ]
+		echo "ERROR::Failed to set TELNETLanEnable!"
+	#encrypt var_default_ctree
+	if [ $varIsXmlEncrypted -eq 1 ]
+		gzip -f $var_current_ctree_bak_file
+		mv $var_current_ctree_bak_file".gz" $var_current_ctree_bak_file
+		$var_pack_temp_dir/aescrypt2 0 $var_current_ctree_bak_file $var_current_ctree_file_tmp
+	rm -f $var_jffs2_current_ctree_file
+	cp -f $var_current_ctree_bak_file $var_jffs2_current_ctree_file
+HW_Open_Telnet_Ctree_Node
+echo "feature.name = \"HW_SSMP_FEATURE_CLI_CHINA_MODE\" feature.enable=\"1\" feature.attribute=\"1\"" > /mnt/jffs2/hw_hardinfo_feature
+echo "success!"
+8881DDDDDDDD9991
+MMM*hhhT{{{q
+{{{riiiTNNN++++
+777+777;888=8880777
+8880888=777;777*777
+)3<</FYY-Rss+V||(Y
++W~~.Rrr/Iaa+9EE %))
+   >888o;;;{;;;};;;};;;};;;};;;};;;};;;};;;};;;};;;};;;};;;};;;};;;z555e
+),)),)),)),)
+),))())())()
+.44444444.
+4444444444
+V5444444444V
+VVVVVVVVVVVVVV
+./555WWWW5555/
+s "dff";;[\PA
+(//Gyy9jjj
+ZhB%*ikkCCC
+*ACDhmmESS
+MEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE%
+TTT>qqql~~~
+rrrlUUU?'''
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0">
+<dependency>
+    <dependentAssembly>
+      <assemblyIdentity
+        type="win32"
+        name="Microsoft.Windows.Common-Controls"
+        version="6.0.0.0"
+        processorArchitecture="*"
+        publicKeyToken="6595b64144ccf1df"
+        language="*"
+        />
+    </dependentAssembly>
+</dependency>
+<v3:trustInfo xmlns:v3="urn:schemas-microsoft-com:asm.v3">
+    <v3:security>
+      <v3:requestedPrivileges>
+        <!-- level can be "asInvoker", "highestAvailable", or "requireAdministrator" -->
+        <v3:requestedExecutionLevel level="requireAdministrator" />
+      </v3:requestedPrivileges>
+    </v3:security>
+</v3:trustInfo>
+</assembly>
+5+606R6b6q6
+;#<*<<<@<D<H<
+:/:E:Q:`:l:{:
+;);8;D;S;_;n;z;
+<+<7<F<R<a<m<|<
+=*=9=E=T=`=o={=
+>,>8>G>S>b>n>}>
+?+?:?F?U?a?p?|?
+929J9c9i9|9
+0P1T1X1\1`1d1h1l1p1t1x1|1
+>;>E>O>Y>`>
+0	1H1S1c1s1
+3!4(484H4u4
+4+525=5D5O5V5e5l5}5
+6#60676>6I6P6[6b6|7
+8%848O8\8e8u8
+9 9-9<9U9e9w9
+: :=:M:`:r:y:
+;)<0<=<L<o<v<
+=,=<=H=X=w=
+?"?/?<?I?[?m?
+6F7K7k7w7|7
+;M<^<h<;=L=V=m=w=|=
+5$60676B6Q6
+7K8f9u9F:V:
+1D2b2}2.3F3X3v3
+0V2f2V3f3G4
+0014181<1@1D1H1L1P1T1
+50@0a061E1
+0V2e2g4>7R:
+8#8(8U8q8v8
+9%:0:5:::j:q:
+:%:@:E:N:`:
+<3<G<W<\<u<
+3&474N4X4b4
+4J6P6V6\6z6
+7'8_8e8k8s8
+5+5:5_5f5r5
+3 3D5J5n7t7
+0"1*1A1S1j1
+6S8e8~8L9V9
+5<5@5D5H5L5Q5z5
+;&;4;T;k;|;
+8!8'8-83898?8E8K8Q8]8h8y8
+<"<@<I<j<v<
+=&=,=N=i=r=
+<_<d=v=;>D?L?^?
+2"2U2c2r203W3b3p3
+=;=U=a=s=z=
+8H8<9$:B:T:m:
+;'<2<C<N<_<j<w<
+;!<M<Z<n<s<
+<@=a=&>D>|>
+3#3'3+3/33373;3?3a3i3s3
+:::K:V:^:}:
+131@1I1S1b1g1v1
+>1?6?L?U?q?v?
+3?3X3a3k3z3
+5#5-5<5A5P5W5_5e5m5s5|5
+516S6r6y6!<z<
+5-6T6\6c6m6
+9 9%9I9Q9Y9p:
