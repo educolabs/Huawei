@@ -1,0 +1,11 @@
+#!/bin/sh
+#查看三层快转表
+
+if [ 0 -eq $# ]; then
+    cat /proc/wap_proc/ffwd_table6;
+    exit 0;
+else
+    echo "ERROR::input para is not right!";
+    exit 1;
+fi
+

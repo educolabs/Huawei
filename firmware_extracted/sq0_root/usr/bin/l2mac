@@ -1,0 +1,11 @@
+#!/bin/sh
+#²é¿´MACÈí±í
+
+if [ 0 -eq $# ]; then
+    cat /proc/wap_proc/mac_table;
+    exit 0;
+else
+    echo "ERROR::input para is not right!";
+    exit 1;
+fi
+

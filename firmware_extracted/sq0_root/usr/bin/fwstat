@@ -1,0 +1,12 @@
+#!/bin/sh
+#查看报文统计
+
+if [ 0 -eq $# ]; then
+    cat /proc/wap_proc/fw_stat;
+    cat /proc/wap_proc/pkt_drop;
+    exit 0;
+else
+    echo "ERROR::input para is not right!";
+    exit 1;
+fi
+

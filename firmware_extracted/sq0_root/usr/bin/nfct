@@ -1,0 +1,10 @@
+#!/bin/sh
+#查看连接跟踪
+
+if [ $# -eq 0 ]; then
+    cat /proc/net/nf_conntrack;
+    exit 0;
+else
+    echo "ERROR::input para is not right!";
+    exit 1;
+fi

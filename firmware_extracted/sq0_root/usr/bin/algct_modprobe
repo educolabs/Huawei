@@ -1,0 +1,49 @@
+#!/bin/sh
+
+# 此脚本只处理带一个参数的特定KO加载卸载，参数可以是整数或者整数列表
+modlist="
+/lib/modules/wap/nf_conntrack_rtcp_alg.ko
+/lib/modules/linux/kernel/net/netfilter/nf_conntrack_pptp.ko
+/lib/modules/linux/kernel/net/netfilter/nf_conntrack_ftp.ko
+/lib/modules/linux/kernel/net/netfilter/nf_conntrack_tftp.ko
+/lib/modules/linux/kernel/net/netfilter/nf_conntrack_h323.ko
+/lib/modules/linux/kernel/net/netfilter/nf_conntrack_sip.ko
+"
+# 不带参数为卸载操作，带一个参数为加载操作
+if [ $# -ne 1 ] && [ $# -ne 2 ]; then
+    exit 1
+fi
+
+mask=
+for mod in ${modlist}
+do
+    name=${mod##/*/}
+    if [ "$1" == "${name}" ] || [ "$1" == "${mod}" ]; then
+        mask=yes
+        break
+    fi
+done
+
+if [ -z ${mask} ]; then
+    exit 1
+fi
+
+if [ $# -eq 1 ]; then
+    rmmod ${mod} > /dev/null 2>&1
+    exit $?
+fi
+
+# 加载操作需要校验参数，防止注入
+portlist=${2//,/ }
+for port in ${portlist}
+do
+    if ! [ ${port} -ge 0 ] &>/dev/null; then
+        exit 1
+    fi
+done
+
+ports=${portlist// /,}
+
+insmod ${mod} ports=${ports} > /dev/null 2>&1
+
+exit $?

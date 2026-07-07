@@ -1,0 +1,16 @@
+#!/bin/busybox sh
+#清除丢包统计
+
+if [ 0 -ne $# ]; then
+    echo "ERROR::input para is not right!";
+    exit 1;
+else
+    read -p "Confirm to clear droppkt stats(y):" var_confirm
+    if [ x$var_confirm == x"y" ] ; then
+        echo clr > /proc/wap_proc/pkt_drop
+        exit 0;
+    else
+        echo "Cancel to clear drop pkt stats."
+        exit 1;
+    fi
+fi
