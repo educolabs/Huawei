@@ -1,0 +1,51 @@
+#!/bin/sh
+
+# 此脚本只处理固定KO加载和卸载
+name=nf_conntrack_rtsp_alg.ko
+path=/lib/modules/wap/${name}
+port=
+policy=
+
+# 不带参数为卸载
+if [ $# -eq 1 ]; then
+    if [ "$1" == "${name}" ] || [ "$1" == "${path}" ]; then
+        rmmod ${path} > /dev/null 2>&1
+    fi
+
+    exit $?
+fi
+
+# 带参数为加载
+if [ $# -ne 2 ] && [ $# -ne 3 ]; then
+    exit 1
+fi
+
+if [ "$1" != "${path}" ]; then
+    exit 1
+fi
+
+if [ $2 -ge 0 ] &>/dev/null; then
+    port=$2
+fi
+
+if [ -z "${port}" ]; then
+    exit 1
+fi
+
+# 带一个整数参数
+if [ $# -eq 2 ]; then
+    insmod ${path} ports=${port} > /dev/null 2>&1
+fi
+
+if [ $3 -ge 0 ] &>/dev/null; then
+    policy=$3
+fi
+
+if [ -z "${policy}" ]; then
+    exit 1
+fi
+
+# 带两个整数参数
+insmod ${path} ports=${port} natpolicy=${policy} > /dev/null 2>&1
+
+exit $?

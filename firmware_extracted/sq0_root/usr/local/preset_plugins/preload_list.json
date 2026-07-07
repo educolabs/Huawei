@@ -1,0 +1,5 @@
+{
+  "PreloadList" : [
+    {"name" : "eaiapp", "version" : "20.1.44", "package" : "/mnt/jffs2/app/preload/eaiapp.ipk"}
+   ]
+}

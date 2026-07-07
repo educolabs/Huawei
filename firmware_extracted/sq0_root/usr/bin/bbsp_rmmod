@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# 只允许卸载白名单中的KO
+dyn_file=/etc/bbsp_dynamic_mod
+
+modlist=$(cat ${dyn_file})
+
+if [ $# -ne 1 ]; then
+    exit 1
+fi
+
+for mod in ${modlist}
+do
+    name=${mod##/*/}
+    if [ "$1" == "${name}" ] || [ "$1" == "${mod}" ]; then
+        rmmod ${mod} > /dev/null 2>&1
+        break
+    fi
+done
+
+exit $?

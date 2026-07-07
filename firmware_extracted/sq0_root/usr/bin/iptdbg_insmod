@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# 此脚本只处理固定KO的加载，参数默认为0
+mod=/lib/modules/wap/hw_iptable_dbg.ko
+print=0
+log=0
+
+if [ $# -ne 3 ] || [ "$1" != "${mod}" ] ; then
+    exit 1
+fi
+
+if [ $2 -eq 1 ] &>/dev/null; then
+    print=1
+fi
+
+if [ $3 -eq 1 ] &>/dev/null; then
+    log=1
+fi
+
+insmod ${mod} print_enable=${print} log_enable=${log} > /dev/null 2>&1
+
+exit $?

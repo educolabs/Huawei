@@ -1,0 +1,22 @@
+#!/bin/sh
+
+# 只允许加载白名单中的KO
+dyn_file=/etc/bbsp_dynamic_mod
+ini_file=/etc/bbsp_initial_mod
+
+modlist=$(cat ${dyn_file} ${ini_file})
+
+if [ $# -ne 1 ]; then
+    exit 1
+fi
+
+for mod in ${modlist}
+do
+    name=${mod##/*/}
+    if [ "$1" == "${name}" ] || [ "$1" == "${mod}" ]; then
+        insmod ${mod} > /dev/null 2>&1
+        break
+    fi
+done
+
+exit $?

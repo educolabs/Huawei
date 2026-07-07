@@ -1,0 +1,180 @@
+#!/bin/sh
+
+# Make sure the usual locations are in PATH
+export PATH=$PATH:/usr/sbin:/usr/bin:/sbin:/bin
+
+install_busybox()
+{
+    rootfs=$1
+    name=$2
+    tree="\
+$rootfs/dev \
+$rootfs/home \
+$rootfs/root \
+$rootfs/etc \
+$rootfs/etc/init.d \
+$rootfs/etc/wap \
+$rootfs/bin \
+$rootfs/usr/bin \
+$rootfs/sbin \
+$rootfs/exsbin \
+$rootfs/usr/sbin \
+$rootfs/proc \
+$rootfs/sys \
+$rootfs/mnt \
+$rootfs/tmp \
+$rootfs/var \
+$rootfs/dev/pts \
+$rootfs/dev/shm \
+$rootfs/lib \
+$rootfs/usr/lib"
+    default_file="\
+passwd \
+group \
+gshadow \
+HOSTNAME \
+host.conf \
+hosts \
+resolv.conf \
+mtab"
+
+    mkdir -p $tree || return 1
+    chmod 755 $tree || return 1
+
+    # copy etc default file
+    for dd in $default_file; do
+        cp -rd "/etc/$dd" "$rootfs/etc/$dd"
+    done
+
+    # copy etc spec file
+    spec_file=`cat /proc/wap_proc/spec | grep SSMP_SPEC_LXC_ETC_FILE | sed -r 's/.*"(.+)".*/\1/'`
+    for ss in $spec_file; do
+        cp -rd "/etc/$ss" "$rootfs/etc/$ss"
+    done
+
+    # mount everything
+    cat <<EOF >> $rootfs/etc/init.d/rcS
+#!/bin/sh
+/bin/mount -a
+EOF
+
+    # executable
+    chmod 744 $rootfs/etc/init.d/rcS || return 1
+
+    # mount points
+    cat <<EOF >> $rootfs/etc/fstab
+shm   /dev/shm   tmpfs   defaults     0      0
+EOF
+
+    # writable and readable for other
+    chmod 644 $rootfs/etc/fstab || return 1
+
+    # launch rcS first then make a console available
+    # and propose a shell on the tty, the last one is
+    # not needed
+    cat <<EOF >> $rootfs/etc/inittab
+::sysinit:/etc/init.d/rcS
+EOF
+    # writable and readable for other
+    chmod 644 $rootfs/etc/inittab || return 1
+
+    return 0
+}
+
+configure_busybox()
+{
+    rootfs=$1
+
+    ln -s /bin/busybox.nosuid $rootfs/sbin/init
+    ln -s /exsbin/busybox.suid $rootfs/sbin/busybox.suid
+    ln -s /bin/busybox.nosuid $rootfs/sbin/ifconfig
+
+    return 0
+}
+
+copy_configuration()
+{
+    path=$1
+    rootfs=$2
+    name=$3
+    
+    cat <<EOF > $path/config
+lxc.rootfs.path = $rootfs
+lxc.signal.halt = SIGUSR1
+lxc.uts.name = $name
+lxc.tty.max = 0
+lxc.pty.max = 0
+lxc.net.0.type = none
+lxc.cgroup.memory.oom_control = 1
+lxc.mount.entry = /bin bin none ro,rbind 0 0
+lxc.mount.entry = /sbin exsbin none ro,rbind 0 0
+lxc.mount.entry = /lib lib none ro,rbind 0 0
+lxc.mount.entry = /usr usr none ro,rbind 0 0
+lxc.mount.entry = /etc/wap etc/wap none ro,rbind 0 0
+lxc.mount.entry = /mnt mnt none rw,rbind 0 0
+lxc.mount.entry = /var var none rw,rbind 0 0
+lxc.mount.entry = /tmp tmp none rw,rbind 0 0
+lxc.mount.entry = /dev dev none rw,rbind 0 0
+lxc.mount.auto = cgroup-full:rw
+lxc.mount.auto = proc:mixed sys
+EOF
+}
+
+usage()
+{
+    cat <<EOF
+$1 -h|--help -p|--path=<path>
+EOF
+    return 0
+}
+
+options=$(getopt -o hp:n: -l help,rootfs:,path:,name:,mapped-uid:,mapped-gid: -- "$@")
+if [ $? -ne 0 ]; then
+    usage $(basename $0)
+    exit 1
+fi
+eval set -- "$options"
+
+while true
+do
+    case "$1" in
+        -h|--help)      usage $0 && exit 0;;
+        -p|--path)      path=$2; shift 2;;
+        --rootfs)       rootfs=$2; shift 2;;
+        -n|--name)      name=$2; shift 2;;
+        --mapped-uid)   LXC_MAPPED_UID=$2; shift 2;;
+        --mapped-gid)   LXC_MAPPED_GID=$2; shift 2;;
+        --)             shift 1; break ;;
+        *)              break ;;
+    esac
+done
+
+if [ "$(id -u)" != "0" ]; then
+    echo "This script should be run as 'root'"
+    exit 1
+fi
+
+if [ -z "$path" ]; then
+    echo "'path' parameter is required"
+    exit 1
+fi
+
+rootfs=$path/rootfs
+
+install_busybox $rootfs $name
+if [ $? -ne 0 ]; then
+    echo "failed to install busybox's rootfs"
+    exit 1
+fi
+
+configure_busybox $rootfs
+if [ $? -ne 0 ]; then
+    echo "failed to configure busybox template"
+    exit 1
+fi
+
+copy_configuration $path $rootfs $name
+if [ $? -ne 0 ]; then
+    echo "failed to write configuration file"
+    exit 1
+fi
