@@ -1,0 +1,7 @@
+/home/runner/work/Huawei/Huawei/hwfwtool/build/CMakeFiles/hwfwtool.dir
+/home/runner/work/Huawei/Huawei/hwfwtool/build/CMakeFiles/edit_cache.dir
+/home/runner/work/Huawei/Huawei/hwfwtool/build/CMakeFiles/rebuild_cache.dir
+/home/runner/work/Huawei/Huawei/hwfwtool/build/CMakeFiles/list_install_components.dir
+/home/runner/work/Huawei/Huawei/hwfwtool/build/CMakeFiles/install.dir
+/home/runner/work/Huawei/Huawei/hwfwtool/build/CMakeFiles/install/local.dir
+/home/runner/work/Huawei/Huawei/hwfwtool/build/CMakeFiles/install/strip.dir
