@@ -31,5 +31,6 @@ jobs:
          env:
            DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
          with:
-           model: alibaba/qwen3.7-plus
+           model: alibaba/qwen3.7-max
+           share: false
           
