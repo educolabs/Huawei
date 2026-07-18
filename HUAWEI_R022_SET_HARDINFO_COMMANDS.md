@@ -1,0 +1,559 @@
+# Huawei ONT R022 - Complete Unlock Commands & set hardinfo value Reference
+
+## Quick Syntax Reference
+```
+set hardinfo value SPEC1=value1;SPEC2=value2;&LANGUAGE=lang1,lang2
+```
+- Values separated by `;`
+- Language section starts with `&LANGUAGE=`
+- Execute from `SU_WAP>` prompt (after `su` from `WAP>`)
+
+---
+
+## 1. FULL CLI UNLOCK COMMANDS
+
+### 1.1 Maximum Privilege CLI (All-in-One)
+```bash
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80004000;SSMP_SPEC_CLI_REMOTETELNET=1;SSMP_SPEC_CLI_REDLINEVERSION=1;SSMP_SPEC_WEB_PWDENCRYPT=0;SSMP_SPEC_WEB_FRAME=frame_XGPON;SSMP_SPEC_WEB_MENUXML=MenuXGPONAbroad.xml;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 1.2 Individual CLI Unlock Commands
+```bash
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80004000
+set hardinfo value SSMP_SPEC_CLI_REMOTETELNET=1
+set hardinfo value SSMP_SPEC_CLI_REDLINEVERSION=1
+set hardinfo value SSMP_SPEC_WEB_PWDENCRYPT=0
+```
+
+### 1.3 UserGroup Options
+```bash
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80000000
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80002000
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80004000
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80004010
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x00004000
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x00000000
+```
+
+---
+
+## 2. COMMON MODE / CARRIER UNLOCK
+
+### 2.1 Set to COMMON Mode (Remove ISP Lock)
+```bash
+set hardinfo value customize_flag=COMMON;cfg_word=COMMON;usescene_flag=NOCHOOSE;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 2.2 COMMON with All Parameters
+```bash
+set hardinfo value customize_flag=COMMON;cfg_word=COMMON;bin_word=COMMON;usescene_flag=NOCHOOSE;originalVersion=COMMON;customInfo=COMMON;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 2.3 Available Language Tags
+```
+COMMON, DT_ENGLISH, DT_SPANISH, DT_FRENCH, DT_GERMAN, DT_ITALIAN,
+DT_PORTUGUESE, DT_RUSSIAN, DT_ARABIC, DT_TURKISH, DT_POLISH,
+DT_ROMANIAN, DT_HUNGARY, DT_CZECH, DT_SLOVAK, DT_CROATIAN,
+DT_BULGARIAN, DT_GREEK, DT_HEBREW, DT_THAI, DT_VIETNAMESE,
+DT_INDONESIAN, DT_MALAY, DT_CHINESE
+```
+
+---
+
+## 3. WEB INTERFACE CONFIGURATION
+
+### 3.1 Full Featured Web (XGPON Frame + Abroad Menu)
+```bash
+set hardinfo value SSMP_SPEC_WEB_FRAME=frame_XGPON;SSMP_SPEC_WEB_MENUXML=MenuXGPONAbroad.xml;SSMP_SPEC_WEB_PWDENCRYPT=0;SSMP_SPEC_WEB_OUTCHANGEPORT=80;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 3.2 Available Web Frames
+```bash
+set hardinfo value SSMP_SPEC_WEB_FRAME=frame_XGPON
+set hardinfo value SSMP_SPEC_WEB_FRAME=frame_huawei
+set hardinfo value SSMP_SPEC_WEB_FRAME=frame_redhuawei
+```
+
+### 3.3 Available Menu XMLs
+```bash
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuXGPONAbroad.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuSmartAbroad.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuAbroad.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuXGPONChina.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuSmartChina.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuChina.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuCmcc.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuUnicom.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuE8c.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuRemote.xml
+set hardinfo value SSMP_SPEC_WEB_MENUXML=MenuE8c.xml
+```
+
+### 3.4 Password Encryption Levels
+```bash
+set hardinfo value SSMP_SPEC_WEB_PWDENCRYPT=0
+set hardinfo value SSMP_SPEC_WEB_PWDENCRYPT=1
+set hardinfo value SSMP_SPEC_WEB_PWDENCRYPT=3
+```
+
+---
+
+## 4. NETWORK FEATURE ACTIVATION
+
+### 4.1 Enable All BBSP Features
+```bash
+set hardinfo value BBSP_FT_FIREWALL=1;BBSP_FT_NAT=1;BBSP_FT_IPV6=1;BBSP_FT_ROUTE=1;BBSP_FT_UPNP_MAIN=1;BBSP_FT_WAN=1;BBSP_FT_DHCPC=1;BBSP_FT_DHCPD=1;BBSP_FT_DNS=1;BBSP_FT_DDNS_IP=1;BBSP_FT_DDNS_PPP=1;BBSP_FT_PING=1;BBSP_FT_ARP=1;BBSP_FT_ARPPING=1;BBSP_FT_DMZ=1;BBSP_FT_PORTMAP=1;BBSP_FT_PORTTRIGGER=1;BBSP_FT_ALG=1;BBSP_FT_ACL=1;BBSP_FT_DOSFILTER=1;BBSP_FT_IPFILTER=1;BBSP_FT_MACFILTER=1;BBSP_FT_URLFILTER=1;BBSP_FT_IGMP_ENABLE=1;BBSP_FT_L3=1;BBSP_FT_QOS=1;BBSP_FT_SNTP=1;BBSP_FT_RINGCHK=1;&LANGUAGE=COMMON
+```
+
+### 4.2 Enable IPv6 Full Stack
+```bash
+set hardinfo value BBSP_FT_IPV6=1;BBSP_FT_IPV6_CORE=1;BBSP_FT_IPV6_WANCFG=1;BBSP_FT_IPV6_LANDEV=1;BBSP_FT_IPV6_DHCP6S=1;BBSP_FT_IPV6_DSLITE=1;BBSP_FT_IPV6_DIAG=1;BBSP_FT_IPV6_ROUTE=1;BBSP_FT_IPV6_PORTMAPPING=1;BBSP_FT_IPV6_IPFILTER=1;BBSP_FT_CONFIG_IPV6_SESSION=1;BBSP_FT_IPV6_DHCP6S_OPTION=1;BBSP_FT_DHCPV6_PD_ENABLE=1;BBSP_FT_ULA_FORWARD=1;&LANGUAGE=COMMON
+```
+
+### 4.3 Enable Advanced Routing
+```bash
+set hardinfo value BBSP_FT_ROUTE=1;BBSP_FT_L3=1;BBSP_FT_L3_ALL=1;BBSP_FT_L3IGMP=1;FT_MODULE_FULL_ROUTE=1;FT_MODULE_POLICY_ROUTE=1;FT_MODULE_STATIC_ROUTE=1;FT_MODULE_L3QOS=1;BBSP_SPEC_IPV4_ROUTE_MAXNUM=256;BBSP_SPEC_IPV6_ROUTE_MAXNUM=256;BBSP_SPEC_USR_CFG_ROUTE_MAXNUM=512;&LANGUAGE=COMMON
+```
+
+### 4.4 Enable Security Features
+```bash
+set hardinfo value BBSP_FT_FIREWALL=1;BBSP_FT_DOSFILTER=1;BBSP_FT_DOS_COMMONV5=1;BBSP_FT_FIREWALL_FLOW_LOG=1;BBSP_FT_FIREWALL_COMMONV5=1;HW_BBSP_FT_SEC_ACL_SUPPORT=1;HW_BBSP_FT_SEC_FIREWALL_SUPPORT=1;FT_ATTACH_FIREWALL_LEVEL=1;BBSP_FT_DOS_SESSION_MAX=4000;BBSP_SPEC_SEC_SIPWHITENUM=8;&LANGUAGE=COMMON
+```
+
+### 4.5 Enable NAT/Port Features
+```bash
+set hardinfo value BBSP_FT_NAT=1;BBSP_FT_PORTMAP=1;BBSP_FT_PORTTRIGGER=1;BBSP_FT_DMZ=1;BBSP_FT_UPNP_MAIN=1;BBSP_SPEC_NAT_PORTMAPNUM=64;BBSP_SPEC_NAT_PORTTRIGGERNUM=64;BBSP_FT_PORTMAP_INSEQ=1;BBSP_FT_SYMMETRIC_NAT=1;BBSP_FT_DMZ_AUTOBIND_INTERNET=1;&LANGUAGE=COMMON
+```
+
+### 4.6 Enable VPN Features
+```bash
+set hardinfo value FT_IPSEC_VPN=1;FT_L2TP_VPN=1;BBSP_FT_L2TP=1;FT_VXLAN=1;FT_VXLAN_FAST_TRANS_CONTROL=1;&LANGUAGE=COMMON
+```
+
+### 4.7 Enable Multicast/IPTV
+```bash
+set hardinfo value BBSP_FT_IGMP_ENABLE=1;BBSP_FT_L3IGMP=1;BBSP_FT_MULTICAST_ROUTEIP=1;BBSP_FT_MULTICAST_ROUTEPPP=1;BBSP_FT_MULTICAST_BRIDGE=1;BBSP_FT_MULTICAST_WANPROXY=1;BBSP_SPEC_IGMP_PROGRAMNUM=512;BBSP_SPEC_IGMP_USERNUM_PERPORT=64;BBSP_FT_BTV_HW_ME_DECLARATION=1;BBSP_FT_WIFI_BTV_SWITCH=1;&LANGUAGE=COMMON
+```
+
+---
+
+## 5. SSMP FEATURE ACTIVATION
+
+### 5.1 Enable USB/Storage Features
+```bash
+set hardinfo value HW_SSMP_FEATURE_USB=1;HW_SSMP_FEATURE_USBPRINTER=1;HW_SSMP_FEATURE_USBSTORAGE=1;HW_SSMP_FEATURE_USD=1;HW_SSMP_FEATURE_DM_SMBA=1;HW_SSMP_FEATURE_DLNA=1;HW_SSMP_FEATURE_CFG_BACKUP=1;HW_SSMP_FEATURE_BASE64=1;FT_SUPPORT_SDN=1;&LANGUAGE=COMMON
+```
+
+### 5.2 Enable Debug/Developer Features
+```bash
+set hardinfo value SSMP_SPEC_CLI_REDLINEVERSION=1;SSMP_SPEC_WEB_PWDENCRYPT=0;HW_SPEC_APP_UPGRADECHECK_SPACE=0;HW_SPEC_CHECKIMGUPG_SPACE=0;HW_SSMP_FEATURE_UPGRADECHECK=0;FT_USB_AUTO_UPGRADE=0;HW_SSMP_FEATURE_DISABLE_UART=0;FT_SSMP_ISP_LOCKING=0;FT_RESTORE_TO_LAN=1;FT_RESTORE_TO_PON=1;&LANGUAGE=COMMON
+```
+
+### 5.3 Enable Web Features
+```bash
+set hardinfo value HW_SSMP_FEATURE_WEB=1;FT_WEB_HTTPONLY=1;FT_WEB_SPEED_DIAG=1;FT_WEB_MODIFY_USER_PWD=1;HW_SSMP_WEB_MODIFY_AMDIN_PWD=1;FT_WEB_RESET_USER_PWD=1;FT_WEB_EBG=1;FT_WEB_NPTV6=1;FT_WEB_CHECK_WEAKPWD=0;SSMP_FT_SHOWFTPPAGE=1;&LANGUAGE=COMMON
+```
+
+### 5.4 Enable Security Features
+```bash
+set hardinfo value HW_SSMP_FEATURE_PWDCOMPLEX=0;HW_SSMP_FEATURE_WEB_SHA256=0;HW_SSMP_FEATURE_CLI_SHA256=0;HW_SSMP_FEATURE_FTP_SHA256=0;HW_SSMP_FT_CHK_PWD_COMPLEX=0;FT_SECURITY_ACCESS=0;FT_DISABLE_UNSAFE_PROTOCOL=0;HW_SSMP_FEATURE_COOKIE_ENC=0;FT_CLI_SECURITY_ACCESS=0;FT_SSL_VERSION_TLS1_2=1;&LANGUAGE=COMMON
+```
+
+---
+
+## 6. WIFI/AMP FEATURE ACTIVATION
+
+### 6.1 Enable Advanced WiFi
+```bash
+set hardinfo value HW_AMP_FEATURE_11AC=1;HW_AMP_FEATURE_DOUBLE_WLAN=1;HW_AMP_FEATURE_COMMON=1;HW_AMP_FEATURE_UPNP_CONFIG=1;FT_WLAN_ACS_CAP=1;FT_WLAN_RTS_CTS_CAP=1;FT_WLAN_CCA_CAP=1;FT_WLAN_LINKTURBO=1;FT_WLAN_STA_ROAMPOLICY=1;FT_WLAN_DISPLAY_WMM=1;FT_WLAN_WPA2ANDWPA3=1;FT_WLAN_EASYMESH_TEST=1;FT_CONTROL_BAND_COMBINATION=1;FT_WLAN_BSD_CAP=1;FT_WLAN_DFS_RESTORE=1;FT_WLAN_OFFLOADING=1;FT_WLAN_SUPPORT_16SSID=1;WLAN_SPEC_EASYMESH_VERSION=2;&LANGUAGE=COMMON
+```
+
+### 6.2 WiFi Expert Settings
+```bash
+set hardinfo value AMP_SPEC_MAX_STA_NUM=64;AMP_SPEC_SSID_NUM_MAX_BAND=8;AMP_SPEC_MAX_MACFILTER_NUM=16;AMP_SPEC_AP_ACCESS_MAX_NUM=32;WIFI_SPEC_ERP_LIMIT_POWER_2G=40;WIFI_SPEC_ERP_LIMIT_POWER_5G=60;HW_AMP_SPEC_24GWIFI_EIRP=200;WLAN_SPEC_BSD_THRESHOLD_5G=20;&LANGUAGE=COMMON
+```
+
+---
+
+## 7. TELEMETRY AND DIAGNOSTICS
+
+### 7.1 Enable Diagnostics
+```bash
+set hardinfo value FT_SPEED_TEST_ACK=1;FT_DM_AUTOREBOOT=1;FT_SMART_BOARD=1;FT_OLT_UTC_TIME=1;HW_SSMP_FT_DIAG_URL_CFM=1;HW_SSMP_FT_V5_CMS_SUPPORT=1;FT_IPERF_TEST=1;FT_SYSTEM_COPY=1;FT_FACTORY_DOWNGRADE_LIMIT=0;&LANGUAGE=COMMON
+```
+
+### 7.2 Enable TR-069/CWMP
+```bash
+set hardinfo value HW_SSMP_FEATURE_CWMP_DEF=1;HW_SSMP_FEATURE_CWMP_AUTH=1;SSMP_FT_DFX_ACS_UPGRADE=1;FT_CWMP_CERTIFICATE_WEB=1;FT_CWMP_SUPPORT_IPV6=1;FT_CWMP_GPV_SPECIAL_SET=1;HW_FT_CWMP_TR143_ON_BRIDGE_WAN=1;&LANGUAGE=COMMON
+```
+
+---
+
+## 8. BBSP SPEC VALUE MODIFICATIONS
+
+### 8.1 Increase Session/Route Limits
+```bash
+set hardinfo value BBSP_SPEC_FWD_SESSIONNUM=16000;BBSP_SPEC_IPV4_ROUTE_MAXNUM=256;BBSP_SPEC_IPV6_ROUTE_MAXNUM=256;BBSP_SPEC_USR_CFG_ROUTE_MAXNUM=512;BBSP_SPEC_NAPT_ITEM_NUM=16384;BBSP_SPEC_NAT_PORTMAPNUM=64;BBSP_SPEC_NAT_PORTTRIGGERNUM=64;BBSP_SPEC_CTP_NUM=256;BBSP_SPEC_WAN_IPORPPPCONNNUM=8;BBSP_SPEC_IFM_WANNUM=16;&LANGUAGE=COMMON
+```
+
+### 8.2 Increase LAN Limits
+```bash
+set hardinfo value BBSP_SPEC_LAN_MAC_FILTER_NUM=32;BBSP_SPEC_LAN_DHCPADDMIN="";BBSP_SPEC_LAN_DHCPADDMAX="";SPEC_LAN_DEV_LAY2_SOURCE="X_HW_BRIDGE";BBSP_SPEC_IGMP_PROGRAMNUM=512;BBSP_SPEC_IGMP_USERNUM_PERPORT=64;&LANGUAGE=COMMON
+```
+
+### 8.3 Performance Tuning
+```bash
+set hardinfo value SPEC_FAST_ACK_WIN_SIZE=6000;SPEC_FAST_ACK_TCPRMEMMIN=8192;SPEC_FAST_ACK_TCPRMEMDEFAULT=1280000;SPEC_FAST_ACK_TCPRMEMMAX=2048000;BBSP_SPEC_CPUQOS_AVG_PERCENT=90;SPEC_NOSTB_SOCKET_BUFF=1048576;BBSP_SPEC_DPI_PKTLIMIT_NUM=320;&LANGUAGE=COMMON
+```
+
+---
+
+## 9. COMPLETE MEGA COMMANDS
+
+### 9.1 ULTIMATE UNLOCK (Everything Enabled)
+```bash
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80004000;SSMP_SPEC_CLI_REMOTETELNET=1;SSMP_SPEC_CLI_REDLINEVERSION=1;SSMP_SPEC_WEB_FRAME=frame_XGPON;SSMP_SPEC_WEB_MENUXML=MenuXGPONAbroad.xml;SSMP_SPEC_WEB_PWDENCRYPT=0;SSMP_SPEC_WEB_OUTCHANGEPORT=80;customize_flag=COMMON;cfg_word=COMMON;bin_word=COMMON;usescene_flag=NOCHOOSE;HW_SSMP_FEATURE_USB=1;HW_SSMP_FEATURE_USBPRINTER=1;HW_SSMP_FEATURE_USBSTORAGE=1;HW_SSMP_FEATURE_DM_SMBA=1;HW_SSMP_FEATURE_DLNA=1;BBSP_FT_FIREWALL=1;BBSP_FT_NAT=1;BBSP_FT_IPV6=1;BBSP_FT_ROUTE=1;BBSP_FT_UPNP_MAIN=1;BBSP_FT_WAN=1;BBSP_FT_DHCPC=1;BBSP_FT_DHCPD=1;BBSP_FT_DNS=1;BBSP_FT_IGMP_ENABLE=1;BBSP_FT_L3=1;BBSP_FT_QOS=1;BBSP_FT_PORTMAP=1;BBSP_FT_PORTTRIGGER=1;BBSP_FT_DMZ=1;BBSP_FT_PING=1;BBSP_FT_ARP=1;BBSP_FT_DDNS_IP=1;BBSP_FT_ALG=1;BBSP_FT_ACL=1;BBSP_FT_DOSFILTER=1;BBSP_FT_IPFILTER=1;BBSP_FT_MACFILTER=1;BBSP_FT_URLFILTER=1;BBSP_FT_SNTP=1;BBSP_FT_RINGCHK=1;FT_IPSEC_VPN=1;FT_L2TP_VPN=1;FT_VXLAN=1;FT_SPEED_TEST_ACK=1;FT_DM_AUTOREBOOT=1;FT_SMART_BOARD=1;FT_IPERF_TEST=1;HW_AMP_FEATURE_11AC=1;HW_AMP_FEATURE_DOUBLE_WLAN=1;HW_AMP_FEATURE_COMMON=1;FT_WLAN_WPA2ANDWPA3=1;FT_WLAN_BSD_CAP=1;FT_WLAN_EASYMESH_TEST=1;AMP_SPEC_MAX_STA_NUM=64;BBSP_SPEC_FWD_SESSIONNUM=16000;BBSP_SPEC_IPV4_ROUTE_MAXNUM=256;BBSP_SPEC_NAPT_ITEM_NUM=16384;BBSP_SPEC_NAT_PORTMAPNUM=64;FT_CLI_SECURITY_ACCESS=0;HW_SSMP_FEATURE_PWDCOMPLEX=0;FT_SECURITY_ACCESS=0;FT_DISABLE_UNSAFE_PROTOCOL=0;FT_RESTORE_TO_LAN=1;FT_RESTORE_TO_PON=1;FT_FACTORY_DOWNGRADE_LIMIT=0;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 9.2 DEVELOPER MODE (Debug + No Restrictions)
+```bash
+set hardinfo value SSMP_SPEC_CLI_REDLINEVERSION=1;SSMP_SPEC_WEB_PWDENCRYPT=0;SSMP_SPEC_CLI_USERGRP=0x80004000;SSMP_SPEC_CLI_REMOTETELNET=1;HW_SPEC_APP_UPGRADECHECK_SPACE=0;HW_SPEC_CHECKIMGUPG_SPACE=0;HW_SSMP_FEATURE_UPGRADECHECK=0;FT_USB_AUTO_UPGRADE=0;HW_SSMP_FEATURE_DISABLE_UART=0;FT_SSMP_ISP_LOCKING=0;FT_CLI_SECURITY_ACCESS=0;HW_SSMP_FEATURE_PWDCOMPLEX=0;HW_SSMP_FEATURE_WEB_SHA256=0;HW_SSMP_FEATURE_CLI_SHA256=0;FT_SECURITY_ACCESS=0;FT_DISABLE_UNSAFE_PROTOCOL=0;FT_FACTORY_DOWNGRADE_LIMIT=0;FT_RESTORE_TO_LAN=1;FT_RESTORE_TO_PON=1;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 9.3 COMMON MODE RESET (Remove ISP Customization)
+```bash
+set hardinfo value customize_flag=COMMON;cfg_word=COMMON;bin_word=COMMON;usescene_flag=NOCHOOSE;originalVersion=COMMON;customInfo=COMMON;SSMP_SPEC_WEB_FRAME=frame_XGPON;SSMP_SPEC_WEB_MENUXML=MenuSmartAbroad.xml;SSMP_SPEC_CLI_USERGRP=0x00004000;SSMP_SPEC_CLI_REMOTETELNET=1;SSMP_SPEC_CLI_REDLINEVERSION=1;SSMP_SPEC_WEB_PWDENCRYPT=3;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 9.4 XGPON CHINA MODE (Full Admin Web)
+```bash
+set hardinfo value SSMP_SPEC_WEB_FRAME=frame_XGPON;SSMP_SPEC_WEB_MENUXML=MenuXGPONChina.xml;SSMP_SPEC_WEB_PWDENCRYPT=3;SSMP_SPEC_CLI_USERGRP=0x80004000;SSMP_SPEC_CLI_REMOTETELNET=1;SSMP_SPEC_CLI_REDLINEVERSION=1;customize_flag=COMMON;cfg_word=COMMON;&LANGUAGE=COMMON,DT_CHINESE
+```
+
+### 9.5 MINIMUM VIABLE UNLOCK (Just CLI Access)
+```bash
+set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80004000;SSMP_SPEC_CLI_REMOTETELNET=1;SSMP_SPEC_CLI_REDLINEVERSION=1;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+---
+
+## 10. SHELL UNLOCK PROCEDURES
+
+### 10.1 Method 1: CLI SU Mode + Shell
+```
+telnet 192.168.100.1
+Login: root
+Password: [your password]
+WAP>su
+success!
+SU_WAP>shell
+```
+Note: Shell is still restricted (busybox.nosuid). Use CLI commands instead.
+
+### 10.2 Method 2: Create DebugVersionFlag
+```
+SU_WAP>set hardinfo value SSMP_SPEC_CLI_USERGRP=0x80004000;SSMP_SPEC_CLI_REDLINEVERSION=1
+```
+Then create the debug flag via file system if possible.
+
+### 10.3 Method 3: Execute restorehwmode.sh
+```
+SU_WAP>shell
+WAP(Dopra Linux) # EquipMode.sh off
+WAP(Dopra Linux) # exit
+SU_WAP>set hardinfo value customize_flag=COMMON;cfg_word=COMMON;bin_word=COMMON;usescene_flag=NOCHOOSE;&LANGUAGE=COMMON,DT_ENGLISH
+```
+
+### 10.4 Method 4: Change Password for Full Access
+```
+SU_WAP>set password
+Enter new password: ********
+Confirm password: ********
+```
+
+### 10.5 Method 5: Modify Web Admin Password
+```
+SU_WAP>set webuserpasswd
+Enter new password: ********
+```
+
+---
+
+## 11. COMPLETE SPEC REFERENCE
+
+### 11.1 SSMP Specs (Key Values)
+| Spec Name | Type | Default | Description |
+|-----------|------|---------|-------------|
+| SSMP_SPEC_CLI_USERGRP | hex | 0x00004000 | CLI user group permission |
+| SSMP_SPEC_CLI_REMOTETELNET | uint | 1 | Remote telnet access |
+| SSMP_SPEC_CLI_REDLINEVERSION | uint | 1 | Debug/redline version |
+| SSMP_SPEC_WEB_FRAME | string | frame_XGPON | Web UI frame |
+| SSMP_SPEC_WEB_MENUXML | string | MenuSmartAbroad.xml | Web menu XML |
+| SSMP_SPEC_WEB_PWDENCRYPT | uint | 3 | Web password encryption (0/1/3) |
+| SSMP_SPEC_WEB_OUTCHANGEPORT | uint | 80 | Web external port |
+| SSMP_SPEC_WEB_CFGFILE_SIZE | uint | 2048 | Web config file size (KB) |
+| SSMP_SPEC_SWM_MODULESIZE | uint | 2500 | SWM module size |
+| SSMP_SPEC_SWM_BUFFERSIZE | hex | 0x100000 | SWM buffer size (1MB) |
+| SSMP_SPEC_SWM_FLASHCONFIGADDR | hex | 0x40000 | Flash config address |
+| SSMP_SPEC_PBKDF2_SALT_LEN | uint | 25 | PBKDF2 salt length |
+| SSMP_SPEC_LOG_SAVETIME | uint | 3600 | Log save interval (sec) |
+| SSMP_SPEC_DM_TIMEFORREBOOTSYS | uint | 1 | DM reboot time |
+| SSMP_SPEC_DM_TIMEFORRESETCFG | uint | 10 | DM reset config time |
+| SSMP_SPEC_STB_MAC_NUM | uint | 0 | STB MAC count |
+| SSMP_SPEC_LLID_MAC_NUM | uint | 1 | LLID MAC count |
+| SSMP_SPEC_ETHOAM_MAC_NUM | uint | 1 | EthOAM MAC count |
+| SSMP_SPEC_USB_SCSI_DISK_MAX | uint | 2 | Max USB disks |
+| SSMP_SPEC_USB_DEV_MAX_PART_NUM | uint | 30 | Max USB partitions |
+| SSMP_SPEC_MSG_PROCMAX | uint | 30 | Max message processes |
+| SSMP_SPEC_MSG_MQLENMAX | uint | 4096 | Max message queue length |
+| SSMP_SPEC_CUPS_BUFSIZE | uint | 8 | CUPS buffer size |
+| SSMP_SPEC_DLNA_SHARE_LIMIT | uint | 20000 | DLNA share limit |
+| SSMP_SPEC_DLNA_PLAY_TOTAL | uint | 4 | DLNA total players |
+| SSMP_SPEC_IPERF_CLIENT_PARALLEL | uint | 1 | iPerf parallel |
+| SSMP_SPEC_CUSTOM_DESCRIPTION | string | common | Custom description |
+| SSMP_SPEC_PLUGIN_APILIST | string | plugin_api | Plugin API list |
+| SSMP_SPEC_QUICK_DIR | string | hw_Config_Backup | Quick backup dir |
+| SSMP_SPEC_QUICK_FILENAME | string | hw | Quick backup filename |
+| SPEC_PRODUCT_TYPE | uint | 0 | Product type (0=PON, 1=DSL, 2=CM) |
+| SPEC_FILE_WRITE_LIMIT | uint | 300 | File write limit |
+| SPEC_FILE_WRITE_SIZE_LIMIT | uint | 20971520 | File write size limit |
+| SPEC_MON_TOTAL_FDS | uint | 9000 | Total FD limit |
+| SPEC_MON_PERPROC_FDS | uint | 800 | Per-process FD limit |
+
+### 11.2 BBSP Specs (Key Values)
+| Spec Name | Type | Default | Description |
+|-----------|------|---------|-------------|
+| BBSP_SPEC_FWD_SESSIONNUM | uint | 8192 | Forward session number |
+| BBSP_SPEC_NAPT_ITEM_NUM | uint | 8192 | NAPT items |
+| BBSP_SPEC_NAT_PORTMAPNUM | uint | 32 | NAT port mappings |
+| BBSP_SPEC_NAT_PORTTRIGGERNUM | uint | 32 | NAT port triggers |
+| BBSP_SPEC_IPV4_ROUTE_MAXNUM | uint | 32 | IPv4 routes max |
+| BBSP_SPEC_IPV6_ROUTE_MAXNUM | uint | 32 | IPv6 routes max |
+| BBSP_SPEC_USR_CFG_ROUTE_MAXNUM | uint | 256 | User config routes |
+| BBSP_SPEC_CTP_NUM | uint | 128 | CTP number |
+| BBSP_SPEC_WAN_IPORPPPCONNNUM | uint | 2 | WAN connections |
+| BBSP_SPEC_IFM_WANNUM | uint | 8 | IFM WAN number |
+| BBSP_SPEC_IGMP_PROGRAMNUM | uint | 255 | IGMP programs |
+| BBSP_SPEC_IGMP_USERNUM_PERPORT | uint | 32 | IGMP users/port |
+| BBSP_SPEC_LAN_MAC_FILTER_NUM | uint | 8 | LAN MAC filters |
+| BBSP_SPEC_DOS_SESSION_MAX | uint | 2000 | DoS session max |
+| BBSP_SPEC_DPI_PKTLIMIT_NUM | uint | 0 | DPI packet limit |
+| BBSP_SPEC_CPUQOS_AVG_PERCENT | uint | 85 | CPU QoS average % |
+| BBSP_SPEC_FLOW_LEAK_CAR | uint | 8000 | Flow leak CAR |
+| BBSP_SPEC_BTV_MAXSSIDNUM | uint | 0 | BTV max SSID |
+| BBSP_SPEC_VBR_DHCPv4_DISC_CIR | uint | 1 | VBR DHCPv4 CIR |
+| BBSP_SPEC_POLICY_ROUTE_MAX | uint | 0 | Policy routes max |
+| BBSP_SPEC_ETHOAM_MD/MA/MEP | uint | 8/16/16 | EthOAM limits |
+| BBSP_SPEC_MACLEARN_DEPTH | uint | 0 | MAC learn depth |
+| BBSP_SPEC_RIP_RATE | uint | 40 | RIP rate |
+| BBSP_SPEC_RIP_ROUTENUM | uint | 128 | RIP routes |
+| BBSP_SPEC_REAL_DEV_NAME | string | eth0 | Real device name |
+| BBSP_SPEC_SERVICELIST | string | HSI/VOICE/ACS/IPTV | Service list |
+| SPEC_FAST_ACK_WIN_SIZE | uint | 0 | Fast ACK window |
+| SPEC_FAST_ACK_TCPRMEMMIN | uint | 0 | TCP RMEM min |
+| SPEC_FAST_ACK_TCPRMEMDEFAULT | uint | 0 | TCP RMEM default |
+| SPEC_FAST_ACK_TCPRMEMMAX | uint | 0 | TCP RMEM max |
+| SPEC_NOSTB_SOCKET_BUFF | uint | 32768 | Socket buffer |
+| SPEC_LAN_DEV_LAY2_SOURCE | string | - | L2 source type |
+
+### 11.3 WiFi/AMP Specs (Key Values)
+| Spec Name | Type | Default | Description |
+|-----------|------|---------|-------------|
+| AMP_SPEC_SSID_NUM_MAX_BAND | uint | 4 | SSIDs per band |
+| AMP_SPEC_MAX_STA_NUM | uint | 32 | Max STAs per SSID |
+| AMP_SPEC_MAX_MACFILTER_NUM | uint | 8 | MAC filters per SSID |
+| AMP_SPEC_AP_ACCESS_MAX_NUM | uint | 16 | Max AP access |
+| AMP_SPEC_ALL_ISP_RATE_LIMIT | uint | 10000 | ISP rate limit |
+| AMP_SPEC_ANT_GAIN | uint | 2 | Antenna gain |
+| WLAN_SPEC_BSD_THRESHOLD_5G | uint | 20 | BandSteering 5G |
+| WLAN_SPEC_MAX_BAND_NUM | uint | 0 | Max bands |
+| WLAN_SPEC_EASYMESH_VERSION | uint | 0 | EasyMesh version |
+| WIFI_SPEC_ERP_LIMIT_POWER_2G | uint | 40 | 2.4G power limit |
+| WIFI_SPEC_ERP_LIMIT_POWER_5G | uint | 60 | 5G power limit |
+| WIFI_SPEC_WPS_OOB_SSID_NAME | string | HUAWEI-ONT | WPS SSID |
+| HW_AMP_SPEC_24GWIFI_EIRP | uint | 100 | 2.4G max EIRP |
+| SPEC_WIFI_KO_WAIT_MAX_TIME | uint | 30 | WiFi KO wait |
+| HILINK_SPEC_TOPO_MAXLAYER | uint | 3 | HiLink topo layers |
+
+---
+
+## 12. COMPLETE FEATURE REFERENCE
+
+### 12.1 SSMP Features (Key)
+| Feature | Default | Description |
+|---------|---------|-------------|
+| HW_SSMP_FEATURE_WEB | 1 | Web interface |
+| HW_SSMP_FEATURE_USB | 1 | USB support |
+| HW_SSMP_FEATURE_USBPRINTER | 0 | USB printer |
+| HW_SSMP_FEATURE_USBSTORAGE | 0 | USB storage |
+| HW_SSMP_FEATURE_DM_SMBA | 0 | Samba sharing |
+| HW_SSMP_FEATURE_DLNA | 0 | DLNA media |
+| HW_SSMP_FEATURE_BATTERY | 0 | Battery support |
+| HW_SSMP_FEATURE_SNMP_SUPPORT | 0 | SNMP |
+| HW_SSMP_FEATURE_MU_DEFCOMMON | 1 | Multicast upgrade |
+| HW_SSMP_FEATURE_CFG_BACKUP | 1 | Config backup |
+| HW_SSMP_FEATURE_BASE64 | 1 | Base64 decryption |
+| HW_SSMP_FEATURE_CWMP_DEF | 1 | CWMP default |
+| HW_SSMP_FEATURE_CWMP_AUTH | 1 | CWMP auth |
+| HW_SSMP_FEATURE_PWDCOMPLEX | 0 | Password complexity |
+| HW_SSMP_FEATURE_WEB_SHA256 | 0 | Web SHA256 |
+| HW_SSMP_FEATURE_CLI_SHA256 | 0 | CLI SHA256 |
+| HW_SSMP_FEATURE_UPGRADECHECK | 0 | Upgrade check |
+| HW_SSMP_FEATURE_DISABLE_UART | 0 | Disable UART |
+| HW_SSMP_FEATURE_DIDO | 0 | DIDO feature |
+| HW_SSMP_FEATURE_OMCI_LOAD | 0 | OMCI load |
+| HW_SSMP_FEATURE_OLT_XML | 0 | OLT XML config |
+| HW_SSMP_FEATURE_DUAL_CORE | 0 | Dual core |
+| HW_SSMP_FEATURE_MESH | 0 | Mesh |
+| HW_SSMP_FEATURE_GXBMONITOR | 0 | GXB monitor |
+| FT_SUPPORT_SDN | 0 | SDN support |
+| FT_SUPPORT_CHIPID_REPORT | 0 | Chip ID report |
+| FT_SSL_VERSION_TLS1_2 | 0 | TLS 1.2 |
+| FT_AIS_MESH | 0 | AIS Mesh |
+| FT_SPEED_TEST_ACK | 1 | Speed test |
+| FT_DM_AUTOREBOOT | 1 | Auto reboot |
+| FT_SMART_BOARD | 0 | Smart board |
+| FT_SYSTEM_COPY | 1 | Primary/backup sync |
+| FT_FACTORY_DOWNGRADE_LIMIT | 1 | Downgrade limit |
+| FT_USB_AUTO_UPGRADE | 0 | USB auto upgrade |
+| FT_RESTORE_TO_LAN | 0 | Restore to LAN |
+| FT_RESTORE_TO_PON | 0 | Restore to PON |
+| FT_CLI_SECURITY_ACCESS | 0 | CLI security |
+| FT_SECURITY_ACCESS | 0 | Security access |
+| FT_DISABLE_UNSAFE_PROTOCOL | 0 | Disable unsafe |
+| FT_IPSEC_VPN | 0 | IPsec VPN |
+| FT_L2TP_VPN | 0 | L2TP VPN |
+| FT_VXLAN | 0 | VXLAN |
+| FT_MAP_E | 0 | MAP-E |
+| FT_MAP_T | 0 | MAP-T |
+| FT_SSH_PORT_FORWARDING | 0 | SSH forwarding |
+| FT_SUPPORT_ANTIDNSREBIND | 0 | Anti DNS rebind |
+
+### 12.2 BBSP Features (Key)
+| Feature | Default | Description |
+|---------|---------|-------------|
+| BBSP_FT_FIREWALL | 1 | Firewall |
+| BBSP_FT_NAT | 1 | NAT |
+| BBSP_FT_IPV6 | 1 | IPv6 |
+| BBSP_FT_ROUTE | 1 | Routing |
+| BBSP_FT_UPNP_MAIN | 1 | UPnP |
+| BBSP_FT_WAN | 1 | WAN |
+| BBSP_FT_DHCPC | 1 | DHCP client |
+| BBSP_FT_DHCPD | 1 | DHCP server |
+| BBSP_FT_DNS | 1 | DNS |
+| BBSP_FT_DDNS_IP | 1 | DDNS |
+| BBSP_FT_PING | 1 | Ping |
+| BBSP_FT_ARP | 1 | ARP |
+| BBSP_FT_ARPPING | 1 | ARP ping |
+| BBSP_FT_DMZ | 1 | DMZ |
+| BBSP_FT_PORTMAP | 1 | Port mapping |
+| BBSP_FT_PORTTRIGGER | 1 | Port trigger |
+| BBSP_FT_ALG | 1 | ALG |
+| BBSP_FT_ACL | 1 | ACL |
+| BBSP_FT_DOSFILTER | 1 | DoS filter |
+| BBSP_FT_IPFILTER | 1 | IP filter |
+| BBSP_FT_MACFILTER | 1 | MAC filter |
+| BBSP_FT_URLFILTER | 1 | URL filter |
+| BBSP_FT_IGMP_ENABLE | 1 | IGMP |
+| BBSP_FT_L3 | 1 | L3 routing |
+| BBSP_FT_QOS | 1 | QoS |
+| BBSP_FT_SNTP | 1 | SNTP |
+| BBSP_FT_RINGCHK | 1 | Ring check |
+| BBSP_FT_L2TP | 0 | L2TP |
+| BBSP_FT_ETHOAM_SUPPORT | 0 | EthOAM |
+| BBSP_FT_TRACEROUTE_ICMP | 0 | Traceroute ICMP |
+| BBSP_FT_VIDEO_DIAGNOSE | 0 | Video diag |
+| BBSP_FT_SYMMETRIC_NAT | 0 | Symmetric NAT |
+| BBSP_FT_PORTMAP_INSEQ | 0 | Port map in seq |
+| BBSP_FT_DMZ_AUTOBIND_INTERNET | 0 | DMZ auto bind |
+| BBSP_FT_WAN_ICMP_DISABLE | 0 | WAN ICMP disable |
+| BBSP_FT_LAYER2BRIDGING | 0 | L2 bridging |
+| BBSP_FT_HYBRID | 0 | Bonding hybrid |
+| BBSP_FT_IGMP_SNOOPINGENABLE_SET | 0 | IGMP snooping |
+| HW_BBSP_FEATURE_8021X | 0 | 802.1X |
+| HW_BBSP_FT_LLDP | 0 | LLDP |
+| BBSP_FT_SUPPORT_MLD_PROXY | 0 | MLD proxy |
+| FT_SUPPORT_MACFLT_GLBCFG | 0 | MAC filter global |
+| FT_MODULE_FULL_ROUTE | 0 | Full route |
+| FT_MODULE_POLICY_ROUTE | 0 | Policy route |
+| FT_MODULE_STATIC_ROUTE | 0 | Static route |
+| FT_MODULE_L3QOS | 0 | L3 QoS |
+
+### 12.3 WiFi/AMP Features (Key)
+| Feature | Default | Description |
+|---------|---------|-------------|
+| HW_AMP_FEATURE_COMMON | 1 | AMP common |
+| HW_AMP_FEATURE_UPNP_CONFIG | 1 | UPnP config |
+| HW_AMP_FEATURE_11AC | 0 | 802.11ac |
+| HW_AMP_FEATURE_DOUBLE_WLAN | 0 | Dual band |
+| HW_AMP_FEATURE_WAPI | 0 | WAPI |
+| HW_AMP_FEATURE_WDS | 0 | WDS |
+| HW_AMP_FEATURE_FON | 0 | FON |
+| FT_WLAN_ACS_CAP | 1 | ACS |
+| FT_WLAN_RTS_CTS_CAP | 1 | RTS/CTS |
+| FT_WLAN_CCA_CAP | 1 | CCA |
+| FT_WLAN_LINKTURBO | 1 | LinkTurbo |
+| FT_WLAN_STA_ROAMPOLICY | 1 | STA roam |
+| FT_WLAN_DISPLAY_WMM | 1 | WMM display |
+| FT_WLAN_WPA2ANDWPA3 | 0 | WPA2/WPA3 |
+| FT_WLAN_EASYMESH_TEST | 0 | EasyMesh test |
+| FT_CONTROL_BAND_COMBINATION | 0 | Band steering |
+| FT_WLAN_BSD_CAP | 0 | BandSteering |
+| FT_WLAN_DFS_RESTORE | 0 | DFS restore |
+| FT_WLAN_OFFLOADING | 0 | WiFi offloading |
+| FT_WLAN_SUPPORT_16SSID | 0 | 16 SSID |
+| FT_WLAN_UPNP_EXPAND | 1 | UPnP expand |
+| FT_WLAN_ACS_CAP | 1 | ACS cap |
+
+---
+
+## 13. VERIFICATION COMMANDS
+
+### 13.1 Check Current Config
+```
+SU_WAP>display equip hardinfo
+SU_WAP>display version
+SU_WAP>display deviceInfo
+SU_WAP>display sysinfo
+SU_WAP>display current-configuration
+SU_WAP>display access mode
+SU_WAP>display telnet access
+SU_WAP>display timeout
+```
+
+### 13.2 Check Features
+```
+SU_WAP>display startup info
+SU_WAP>display swm state
+SU_WAP>display swm bootstate
+```
+
+### 13.3 Save Configuration
+```
+SU_WAP>save data
+```
+
+---
+
+## 14. TROUBLESHOOTING
+
+### 14.1 Permission Denied Errors
+- Ensure you're in `SU_WAP>` mode (run `su` first)
+- Check `SSMP_SPEC_CLI_USERGRP` is set to `0x80004000` or higher
+- Verify `SSMP_SPEC_CLI_REDLINEVERSION=1`
+
+### 14.2 Commands Not Found
+- Some commands only exist in specific `cmd_*.xml` files
+- Check if your carrier customize includes the command
+- Try switching to COMMON mode
+
+### 14.3 Shell Restrictions
+- `busybox.nosuid` is intentionally limited
+- Use CLI commands (`display`, `set`, `get`) instead of shell commands
+- `cat`, `grep`, `find` are not available in restricted shell
+- Use `display file` CLI command to read files
+
+### 14.4 restorehwmode.sh Permission Denied
+- Must be run from proper root context
+- Use `EquipMode.sh off` first to disable equipment mode
+- Or use `set hardinfo value customize_flag=COMMON;cfg_word=COMMON` from SU_WAP
